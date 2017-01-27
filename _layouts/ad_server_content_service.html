@@ -1,0 +1,232 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+    <header>
+        <h1>Content Service</h1>
+        <p>
+            The Content Service can be used for retrieving a single article based on the article's unique key passed through Nativo’s ad call within the querystring.
+        </p>
+    </header>
+
+    <h2>Parameters</h2>
+
+    <p>
+        Construct the ad call by appending jadserve.postrelease.com/content.js with the relevant querystring values based on the data retrieval objectives.
+    </p>
+    <p>
+        Select only one of the following API keys to utilize based on the objective for the integration. The API will always return a specific article, however you're given the option to filter by advertiser, campaign, or specific ad by their respective ids.
+    </p>
+
+    <table class="pure-table query_params">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>prx_url</code></td>
+                <td>
+                    URL to the page that will display the ad<br>
+                    <span class="required">Required</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>prx_adv</code></td>
+                <td>Advertiser ID<sup>*</sup></td>
+            </tr>
+            <tr>
+                <td><code>prx_c</code></td>
+                <td>Campaign ID<sup>*</sup></td>
+            </tr>
+            <tr>
+                <td><code>prx_a</code></td>
+                <td>Ad ID<sup>*</sup></td>
+            </tr>
+            <tr>
+                <td><code>ntv_f</code></td>
+                <td>
+                    p - Returns a short description of the article. The full content of the article is not returned.<br>
+                    f - Returns all article content (tout, images, article body)<br>
+                    <span class="default">Default: f</span>
+                </td>
+            </tr>  
+        </tbody>
+    </table>
+
+    <p>
+        <sup>*</sup> Choose only one of the keys depending on what type of result is desired. For example if you choose to filter by campaign, you would use <code>prx_c</code>. If you choose to filter by an advertiser then you would include just <code>prx_adv</code>.
+    </p>
+
+    <pre><code class="html">&lt;script src="http://jadserve.postrelease.com/content.js?prx_c=1234&amp;prx_url=http://www.example.com/"&gt;&lt;/script&gt;</code></pre>
+
+    <h2>Sample</h2>
+
+    <p>
+        Content data is presented in a JSON format. This data can be handled through your own page logic implementation.
+    </p>
+
+    <h3>Javascript Function</h3>
+    <pre><code class="html">&lt;head&gt;
+    &lt;script type="text/javascript"&gt;
+        function getContent(data) {  // assign content to 'contentArray’
+            contentArray = data.articles;
+                
+            if (contentArray.length &gt; 0) {
+                // content properties
+                var name, logo, url, id, date, time, title, image, text;
+
+                // set content properties
+                name = contentArray[0].advertiser_name;
+                logo = contentArray[0].advertiser_logo;
+                url = contentArray[0].article_full_url;
+                id = contentArray[0].article_id;
+                date = contentArray[0].article_date;
+                time = contentArray[0].article_time;
+                title = contentArray[0].article_title;
+                image = contentArray[0].preview_image;
+                text = contentArray[0].preview_text;
+            }
+        }
+        var Nativo = window.top.Nativo = window.top.Nativo || {}
+        Nativo.onArticlesReady = getContent;
+    &lt;/script&gt;
+    &lt;script src="http://jadserve.postrelease.com/content.js?prx_c=1234&amp;prx_url=http://www.example.com/"&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+
+    <h3>JSON Http Request</h3>
+    <pre><code class="html">&lt;head&gt;
+    &lt;script type="text/javascript"&gt;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 &amp;&amp; xmlhttp.status == 200) {
+              var contentArray = JSON.parse(xmlhttp.responseText);
+              getContent(contentArray);
+            } 
+        }
+        xmlhttp.open("GET", "http://jadserve.postrelease.com/content.json?prx_c=1234&amp;prx_url=http://www.example.com/", true);
+        xmlhttp.send();
+
+        function getContent(contentArray) {
+
+            if (contentArray.length &gt; 0)
+            {
+                // content properties
+                var name, logo, url, id, date, time, title, image, text;
+
+                // set content properties
+                name = contentArray[0].advertiser_name;
+                logo = contentArray[0].advertiser_logo;
+                url = contentArray[0].article_full_url;
+                id = contentArray[0].article_id;
+                date = contentArray[0].article_date;
+                time = contentArray[0].article_time;
+                title = contentArray[0].article_title;
+                image = contentArray[0].preview_image;
+                text = contentArray[0].preview_text;
+            }
+        }
+    &lt;/script&gt;
+&lt;/head&gt;</code></pre>
+
+
+    <h2>Response Formats</h2>
+    <p>
+        Content Service API supports the following formats: <code>json</code>, <code>js</code>, <code>rss</code>. Simply replace the file extension with the format desired.
+    </p>
+
+    <div class="language-picker">
+        <div class="languages">
+            <a data-language="format-json">JSON</a>
+            <a data-language="format-js">JavaScript</a>
+            <a data-language="format-rss">RSS</a>
+        </div>
+        <div class="code">
+             <pre class="format-json"><code class="bash">
+http://jadserve.postrelease.com/content.json?prx_c=1234&prx_url=http://www.example.com/
+            </code></pre>
+            <pre class="format-js"><code class="bash">
+http://jadserve.postrelease.com/content.js?prx_c=1234&prx_url=http://www.example.com/
+            </code></pre>
+            <pre class="format-rss"><code class="bash">
+http://jadserve.postrelease.com/content.rss?prx_c=1234&prx_url=http://www.example.com/
+            </code></pre>
+        </div>
+    </div>
+
+    <h2>Response</h2>
+    <p>
+        The API call returns an array containing a single piece of content in JSON format which can be accessed through the Nativo.onArticlesReady event.
+    </p>
+
+    <h3>JSON Response</h3>
+    <pre><code class="json">{
+    "articles": {
+        "article": {                        
+            "advertiser_id": 123,
+            "advertiser_name": "&lt;name of advertiser&gt;",
+            "advertiser_logo": "http://logo/logo.png",
+            "advertiser_url": &lt;URL to advertiser’s page&gt;,
+            "preview_image": &lt;URL to tout image&gt;,
+            "preview_headline": &lt;tout headline&gt;, 
+            "preview_text": &lt;brief description for tout&gt;,
+            "preview_click_tracker_url": &lt;third party click tracker URL&gt;,
+            "article_date": &lt;date of article creation&gt;,
+            "article_time": &lt;time of article creation&gt;,
+            "article_relative_url": &lt;relative URL to article&gt;,
+            "article_full_url": &lt;full URL to article&gt;,
+            "article_title": &lt;title of the article&gt;,
+            "article_key": &lt;unique 15 char key for article&gt;,
+            "article_id": &lt;ad id&gt;,
+            "article_tags": &lt;serving tags&gt;,                        
+            "article": &lt;article body content&gt;
+        }
+    },
+    "total_available": &lt;total article count&gt;,
+    "advertiser_tags": &lt;article by author advertiser serving tags&gt;
+}</code></pre>
+
+    <h3>RSS Response</h3>
+
+    <pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nativo="http://www.nativo.net/" version="2.0"&gt;
+&lt;channel&gt;
+   &lt;atom:link href="http://jadserve.postrelease.com/content.rss?prx_c=1234&amp;amp;prx_url=http://www.example. com/"
+        rel="self" type="application/rss+xml"/&gt;
+    &lt;title&gt;Sponsored Articles Feed&lt;/title&gt;
+   &lt;link&gt;http://jadserve.postrelease.com/content.rss?prx_c=1234&amp;amp;prx_url=http://www.example.com/&lt; /link&gt;
+    &lt;description&gt;List of sponsored articles&lt;/description&gt;
+    &lt;item&gt;
+        &lt;guid isPermaLink="false"&gt;http://www.example.com/sample/article/123?prx_ro=s&lt;/guid&gt;
+        &lt;title&gt;Ad title&lt;/title&gt;
+        &lt;link&gt;http://www.example.com/sample/article/123?prx_ro=s&lt;/link&gt;
+        &lt;description&gt;Ad description&lt;/description&gt;
+        &lt;pubDate&gt;Thu, 18 Aug 2016 16:00:00 GMT&lt;/pubDate&gt;
+        &lt;nativo:advertiser_id&gt;1234&lt;/nativo:advertiser_id&gt;
+        &lt;nativo:advertiser_name&gt;Sample Business&lt;/nativo:advertiser_name&gt;
+        &lt;nativo:advertiser_logo&gt;//advertiser-logo.png&lt;/nativo:advertiser_logo&gt;
+        &lt;nativo:advertiser_url&gt;http://some-advertiser.com/&lt;/nativo:advertiser_url&gt;
+        &lt;nativo:preview_image&gt;//preview-image.jpg&lt;/nativo:preview_image&gt;
+        &lt;nativo:preview_headline&gt;An interesting headline&lt;/nativo:preview_headline&gt;
+        &lt;nativo:preview_click_tracker_url&gt;http://jadserve.postrelease.com/trk.gif?ntv_r=&lt;/nativo:preview_click_tracker_url&gt;
+        &lt;nativo:adunit_id&gt;#ntv1234&lt;/nativo:adunit_id&gt;
+        &lt;nativo:article_id&gt;123456&lt;/nativo:article_id&gt;
+        &lt;nativo:article_type&gt;0&lt;/nativo:article_type&gt;
+        &lt;nativo:article_key&gt;a12345&lt;/nativo:article_key&gt;
+        &lt;nativo:article_relative_url&gt;/sample/article/123?prx_ro=s&lt;/nativo:article_relative_url&gt;
+        &lt;nativo:article_tags&gt;{}&lt;/nativo:article_tags&gt;
+        &lt;nativo:article&gt;
+          &amp;lt;p&amp;gt;Main ad content&amp;lt;/p&amp;gt;
+        &lt;/nativo:article&gt;
+        &lt;nativo:article_bottom/&gt;
+        &lt;nativo:article_top&gt;
+          &amp;lt;p&amp;gt;ad header&amp;lt;/p&amp;gt;
+        &lt;/nativo:article_top&gt;
+        &lt;nativo:article_right_rail/&gt;
+        &lt;/item&gt;
+    &lt;/channel&gt;
+&lt;/rss&gt;</code></pre>
+
+</div>

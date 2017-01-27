@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"></link>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/atom-one-dark.min.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css"></link>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+</head>
+<body>
+	<div id="container" class="pure-g">
+		<div id="nav" class="pure-u">
+			<a class="logo" href="/"><img src="http://www.nativo.net/v2/img/global/nativo_logo.png" alt="Nativo logo" style="width: 140px"></a>
+
+<ul class="main">
+	<li class="">
+		<a href="/">Overview</a>
+	</li>
+	<li class="">
+		<a href="/api/reporting/libraries">Reporting API</a>
+		<ul>
+			<li class=""><a href="/api/reporting/libraries">API Libraries</a></li>
+			<li class=""><a href="/api/reporting/authentication">Authentication</a></li>
+			<li class=""><a href="/api/reporting/advertisers">Advertisers</a></li>
+			<li class=""><a href="/api/reporting/campaigns">Campaigns</a></li>
+			<li class=""><a href="/api/reporting/direct">Direct Report</a></li>
+			<li class=""><a href="/api/reporting/managed">Managed Report</a></li>
+			<li class=""><a href="/api/reporting/preferred">Preferred Report</a></li>
+			<li class=""><a href="/api/reporting/marketplace">Marketplace Report</a></li>
+			<li class=""><a href="/api/reporting/metrics">Report Metrics</a></li>
+			<li class=""><a href="/api/reporting/entities">Report Entities</a></li>
+		</ul>
+	</li>
+	<li class="active">
+		<a href="/api/ad-server">Ad Server API</a>
+		<ul>
+			<li class=""><a href="/api/ad-server/content-service">Content Service</a></li>
+			<li class="active"><a href="/api/ad-server/index-service">Index Service</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/api/ssp-api">SSP API</a>
+		<ul>
+			<li class=""><a href="/api/ssp-api/overview">Overview</a></li>
+			<li class=""><a href="/api/ssp-api/bid-request">Bid Request</a></li>
+			<li class=""><a href="/api/ssp-api/bid-response">Bid Response</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/onboarding">Publisher Integration</a>
+		<ul>
+			<li class=""><a href="/onboarding/web">Web</a></li>
+			<li class=""><a href="/onboarding/mobile-sdk">Mobile SDK</a></li>
+		</ul>
+	</li>
+</ul>
+		</div>
+		<div id="content" class="pure-u">
+			<div class="pure-g">
+				<div class="pure-u-5-5">
+    <header>
+        <h1>Index Service</h1>
+        <p>
+            The Index Service can be used for retrieving a list of articles based on a custom ﬁlter criteria that’s passed through Nativo’s ad call within the querystring.
+        </p>
+    </header>
+
+    <h2>Parameters</h2>
+    <p>
+        Construct the ad call by appending jadserve.postrelease.com/index.js with the relevant querystring values based on the data retrieval objectives.
+    </p>
+    <pre><code class="html">&lt;script src="http://jadserve.postrelease.com/index.js?ntv_pgsz=10&amp;ntv_ord=1&amp;ntv_ex=3&amp;prx_adv=555&amp;prx_url=http://www.example.com/"&gt;&lt;/script&gt;</code></pre>
+
+    <table class="pure-table query_params">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>prx_url</code></td>
+                <td>
+                    Return all eligible results for the given page based on the placements for a speciﬁc URL<br/>
+                    <span class="required">Required</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>ntv_ord</code></td>
+                <td>
+                    0 - chronological order (newest article ﬁrst)<br/>
+                    1 - shuffled<br/>
+                    <span class="default">Default: 0</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>ntv_pgsz</code></td>
+                <td>Indicate the number of articles to return per page (1 to 100).</td>
+            </tr>
+            <tr>
+                <td><code>ntv_pg</code></td>
+                <td>Specify which page of results to return. Defaults to page 1. (not to be used when using shuﬄe mode from <code>ntv_ord</code>)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Select only one of the following API keys to utilize based on the objective for the API integration. Using <code>ntv_a</code> will return the entire list of articles for the advertiser but the intent is to also use it with <code>ntv_ex</code> which will allow you to specify whether the article represented by ntv_a will be included or excluded from the list.
+    </p>
+    <p>
+        Using <code>prx_adv</code> will return an entire list of articles for a given advertiser with no ﬁlter in place.
+    </p>
+
+    <table class="pure-table query_params">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>prx_a</code></td>
+                <td>Retrieved from the querystring of the page that’s currently being presented.</td>
+            </tr>
+            <tr>
+                <td><code>prx_adv</code></td>
+                <td>
+                    0 (default) - chronological order (newest article ﬁrst)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <table class="pure-table query_params">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ntv_ex</code></td>
+                <td>
+                    0 - Live ads for a given advertiser including the article provided by the <code>ntv_a</code> param<br/>
+                    1 - Live ads for a given advertiser excluding the article provided by the <code>ntv_a</code> param<br/>
+                    2 - Live ads for all advertisers. This mode should only be used for indexing purposes. Impressions and inventory will not be counted.<br/>
+                    3 - All ads based on Nativo’s article by author settings. Nativo users have the ability to specify, through the platorm, which set of articles are eligible to be included as part of this result set.<br/>
+                    4 - Specific list of articles as indicated by <code>ntv_atd</code>.<br/>
+                    <span class="default">Default: 0</span>
+                </td>
+            </tr>
+            <tr>
+                <td><code>ntv_atd</code></td>
+                <td>
+                    Comma separated list of article ids (must be used with <code>ntv_ex=4</code>).
+                </td>
+            </tr>
+            <tr>
+                <td><code>ntv_f</code></td>
+                <td>
+                    p - Returns only the tout preview without the article body data.<br/>
+                    f - Returns all article content (tout, images, article) including the article body data.<br/>
+                    <span class="default">Default: f</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Select only one of the following API keys to utilize based on the objective for the API integration. Using ntv_a will return the entire list of articles for the advertiser but the intent is to also use it with ntv_ex which will allow you to specify whether the article represented by ntv_a will be included or excluded from the list.
+    </p>
+    <p>
+        Using <code>prx_adv</code> will return an entire list of articles for a given advertiser with no ﬁlter in place.
+    </p>
+
+    <h2>Sample</h2>
+
+    <p>
+        The following example is only meant to be a reference and thus uses ﬁctitious values which will need to be replaced with your own set of API Keys.
+    </p>
+
+    <pre><code class="html">&lt;head&gt;
+&lt;script&gt;
+    function getContent(data) { }
+    var Nativo = window.top.Nativo = window.top.Nativo || {}
+    Nativo.onArticlesReady = getContent;
+&lt;/script&gt;
+&lt;script src="http://jadserve.postrelease.com/index.js?ntv_pgsz=10&amp;ntv_ord=1&amp;ntv_ex=3&amp;prx_adv=555&amp;prx_url=http://www.example.com/"&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+
+    <p>
+        Article data is presented in JSON format. This data can be handled through your own page logic implementation.
+    </p>
+<pre><code class="html">&lt;head&gt;
+    &lt;script&gt;
+        function getContent(data) {  // assign list of articles to 'articleArray’
+            articleArray = data.articles;
+            // article properties  var name, logo, url, id, date, time, title, image, text;
+            // loop through articles in articleArray
+            for (var i = 0; i &lt; articleArray.length; i++)
+            {
+                name = articleArray[i].advertiser_name;
+                logo = articleArray[i].advertiser_logo
+                url = articleArray[i].article_full_url;
+                id = articleArray[i].article_id;
+                date = articleArray[i].article_date;
+                time = articleArray[i].article_time;
+                title = articleArray[i].article_title;
+                image = articleArray[i].preview_image;
+                text = articleArray[i].preview_text;
+            }
+        }
+        var Nativo = window.top.Nativo = window.top.Nativo || {}
+        Nativo.onArticlesReady = getContent;
+    &lt;/script&gt;
+    &lt;script src="http://jadserve.postrelease.com/index.js?ntv_pgsz=10&amp;ntv_ord=1&amp;ntv_ex=3&amp;prx_adv=555&amp;prx_url=http://www.example.com/"&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+
+    <h2>Response Formats</h2>
+    <p>
+        Index Service API supports the following formats: json, js, rss. Simply replace the file extension with the format desired.
+    </p>
+
+    <div class="language-picker">
+        <div class="languages">
+            <a data-language="format-json">JSON</a>
+            <a data-language="format-js">JavaScript</a>
+            <a data-language="format-rss">RSS</a>
+        </div>
+        <div class="code">
+             <pre class="format-json"><code class="bash">
+http://jadserve.postrelease.com/index.json?ntv_pgsz=10&ntv_ord=1&ntv_ex=3&prx_adv=555&prx_url=http://www.example.com/
+            </code></pre>
+            <pre class="format-js"><code class="bash">
+http://jadserve.postrelease.com/index.js?ntv_pgsz=10&ntv_ord=1&ntv_ex=3&prx_adv=555&prx_url=http://www.example.com/
+            </code></pre>
+            <pre class="format-rss"><code class="bash">
+http://jadserve.postrelease.com/index.rss?ntv_pgsz=10&ntv_ord=1&ntv_ex=3&prx_adv=555&prx_url=http://www.example.com/
+            </code></pre>
+        </div>
+    </div>
+
+    <h2>Response</h2>
+
+    <p>
+        The API call returns an array of articles in JSON format which can be accessed through the Nativo.onArticlesReady event.
+    </p>
+
+    <h3>JSON Response</h3>
+    <pre class="highlight"><code class="json">{
+    articles: [
+        article: {                        
+            advertiser_id: &lt;advertiser id&gt;,
+            advertiser_name: &lt;name of advertiser&gt;,
+                    advertiser_logo: &lt;URL of author logo&gt;,
+                    advertiser_url: &lt;URL to advertiser’s page&gt;,
+                preview_image: &lt;URL to tout image&gt;,
+                    preview_headline: &lt;tout headline&gt;, 
+                    preview_text: &lt;brief description for tout&gt;,
+                    preview_click_tracker_url: &lt;third party click tracker URL&gt;,
+                    article_date: &lt;date of article creation&gt;,
+                article_time: &lt;time of article creation&gt;,
+                    article_relative_url: &lt;relative URL to article&gt;,
+                    article_full_url: &lt;full URL to article&gt;,
+                    article_title: &lt;title of the article&gt;,
+                    article_key: &lt;unique 15 char key for article&gt;,
+                    article_id: &lt;ad id&gt;,
+                    article_tags = &lt;serving tags&gt;,                        
+                    article = &lt;article body content&gt;
+        },
+            article: {},   ...
+    ],
+    total_available: &lt;total article count&gt;,
+    advertiser_tags: &lt;article by author advertiser serving tags&gt;
+}</code></pre>
+
+
+    <h3>RSS Response</h3>
+
+    <pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+   &lt;rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nativo="http://www.nativo.net/" version="2.0"&gt;
+     &lt;channel&gt;
+       &lt;atom:link href="http://jadserve.postrelease.com/index.js?ntv_pgsz=10&amp;amp;ntv_ord=1&amp;amp;ntv_ex=3&amp;amp;prx_adv=555&amp;amp;prx_url=http://www.example.com/" rel="self" type="application/rss+xml"/&gt;
+       &lt;title&gt;Sponsored Articles Feed&lt;/title&gt;
+       &lt;link&gt;http://jadserve.postrelease.com/index.js?ntv_pgsz=10&amp;amp;ntv_ord=1&amp;amp;ntv_ex=3&amp;amp;prx_adv=555&amp;amp;prx_url=http://www.example.com/&lt;/link&gt;
+       &lt;description&gt;List of sponsored articles&lt;/description&gt;
+       &lt;item&gt;
+         &lt;guid isPermaLink="false"&gt;http://www.example.com/sample/article/123?prx_ro=s&lt;/guid&gt;
+         &lt;title&gt;Ad title&lt;/title&gt;
+         &lt;link&gt;http://www.example.com/sample/article/123?prx_ro=s&lt;/link&gt;
+         &lt;description&gt;Ad description&lt;/description&gt;
+         &lt;pubDate&gt;Thu, 18 Aug 2016 16:00:00 GMT&lt;/pubDate&gt;
+         &lt;nativo:advertiser_id&gt;1234&lt;/nativo:advertiser_id&gt;
+         &lt;nativo:advertiser_name&gt;Sample Business&lt;/nativo:advertiser_name&gt;
+         &lt;nativo:advertiser_logo&gt;//advertiser-logo.png&lt;/nativo:advertiser_logo&gt;
+         &lt;nativo:advertiser_url&gt;http://some-advertiser.com/&lt;/nativo:advertiser_url&gt;
+         &lt;nativo:preview_image&gt;//preview-image.jpg&lt;/nativo:preview_image&gt;
+         &lt;nativo:preview_headline&gt;An interesting headline&lt;/nativo:preview_headline&gt;
+         &lt;nativo:preview_click_tracker_url&gt;http://jjadserve.postrelease.com/trk.gif?ntv_r=&lt;/nativo:preview_click_tracker_url&gt;
+         &lt;nativo:adunit_id&gt;#ntv1234&lt;/nativo:adunit_id&gt;
+         &lt;nativo:article_id&gt;123456&lt;/nativo:article_id&gt;
+         &lt;nativo:article_type&gt;0&lt;/nativo:article_type&gt;
+         &lt;nativo:article_key&gt;a12345&lt;/nativo:article_key&gt;
+         &lt;nativo:article_relative_url&gt;/sample/article/123?prx_ro=s&lt;/nativo:article_relative_url&gt;
+         &lt;nativo:article_tags&gt;{}&lt;/nativo:article_tags&gt;
+         &lt;nativo:article&gt;
+           &amp;lt;p&amp;gt;Main ad content&amp;lt;/p&amp;gt;
+         &lt;/nativo:article&gt;
+         &lt;nativo:article_bottom/&gt;
+         &lt;nativo:article_top&gt;
+           &amp;lt;p&amp;gt;ad header&amp;lt;/p&amp;gt;
+         &lt;/nativo:article_top&gt;
+         &lt;nativo:article_right_rail/&gt;
+       &lt;/item&gt;
+       &lt;item&gt;
+         &lt;guid isPermaLink="false"&gt;http://www.example.com/sample/article/456?prx_ro=s&lt;/guid&gt;
+         &lt;title&gt;Another ad title&lt;/title&gt;
+         &lt;link&gt;http://www.example.com/sample/article/456?prx_ro=s&lt;/link&gt;
+         &lt;description&gt;Ad description&lt;/description&gt;
+         &lt;pubDate&gt;Thu, 20 Aug 2016 16:00:00 GMT&lt;/pubDate&gt;
+         &lt;nativo:advertiser_id&gt;4564&lt;/nativo:advertiser_id&gt;
+         &lt;nativo:advertiser_name&gt;Sample Business&lt;/nativo:advertiser_name&gt;
+         &lt;nativo:advertiser_logo&gt;//advertiser-logo.png&lt;/nativo:advertiser_logo&gt;
+         &lt;nativo:advertiser_url&gt;http://some-advertiser.com/&lt;/nativo:advertiser_url&gt;
+         &lt;nativo:preview_image&gt;//preview-image.jpg&lt;/nativo:preview_image&gt;
+         &lt;nativo:preview_headline&gt;An interesting headline&lt;/nativo:preview_headline&gt;
+         &lt;nativo:preview_click_tracker_url&gt;http://jjadserve.postrelease.com/trk.gif?ntv_r=&lt;/nativo:preview_click_tracker_url&gt;
+         &lt;nativo:adunit_id&gt;#ntv4564&lt;/nativo:adunit_id&gt;
+         &lt;nativo:article_id&gt;456456&lt;/nativo:article_id&gt;
+         &lt;nativo:article_type&gt;0&lt;/nativo:article_type&gt;
+         &lt;nativo:article_key&gt;a45645&lt;/nativo:article_key&gt;
+         &lt;nativo:article_relative_url&gt;/sample/article/456?prx_ro=s&lt;/nativo:article_relative_url&gt;
+         &lt;nativo:article_tags&gt;{}&lt;/nativo:article_tags&gt;
+         &lt;nativo:article&gt;
+           &amp;lt;p&amp;gt;Main ad content&amp;lt;/p&amp;gt;
+         &lt;/nativo:article&gt;
+         &lt;nativo:article_bottom/&gt;
+         &lt;nativo:article_top&gt;
+           &amp;lt;p&amp;gt;ad header&amp;lt;/p&amp;gt;
+         &lt;/nativo:article_top&gt;
+         &lt;nativo:article_right_rail/&gt;
+       &lt;/item&gt;
+     &lt;/channel&gt;
+   &lt;/rss&gt;</code></pre>
+
+</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/main.js"></script>
+</body>
+</html>

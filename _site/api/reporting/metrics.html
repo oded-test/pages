@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"></link>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/atom-one-dark.min.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css"></link>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+</head>
+<body>
+	<div id="container" class="pure-g">
+		<div id="nav" class="pure-u">
+			<a class="logo" href="/"><img src="http://www.nativo.net/v2/img/global/nativo_logo.png" alt="Nativo logo" style="width: 140px"></a>
+
+<ul class="main">
+	<li class="">
+		<a href="/">Overview</a>
+	</li>
+	<li class="active">
+		<a href="/api/reporting/libraries">Reporting API</a>
+		<ul>
+			<li class=""><a href="/api/reporting/libraries">API Libraries</a></li>
+			<li class=""><a href="/api/reporting/authentication">Authentication</a></li>
+			<li class=""><a href="/api/reporting/advertisers">Advertisers</a></li>
+			<li class=""><a href="/api/reporting/campaigns">Campaigns</a></li>
+			<li class=""><a href="/api/reporting/direct">Direct Report</a></li>
+			<li class=""><a href="/api/reporting/managed">Managed Report</a></li>
+			<li class=""><a href="/api/reporting/preferred">Preferred Report</a></li>
+			<li class=""><a href="/api/reporting/marketplace">Marketplace Report</a></li>
+			<li class="active"><a href="/api/reporting/metrics">Report Metrics</a></li>
+			<li class=""><a href="/api/reporting/entities">Report Entities</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/api/ad-server">Ad Server API</a>
+		<ul>
+			<li class=""><a href="/api/ad-server/content-service">Content Service</a></li>
+			<li class=""><a href="/api/ad-server/index-service">Index Service</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/api/ssp-api">SSP API</a>
+		<ul>
+			<li class=""><a href="/api/ssp-api/overview">Overview</a></li>
+			<li class=""><a href="/api/ssp-api/bid-request">Bid Request</a></li>
+			<li class=""><a href="/api/ssp-api/bid-response">Bid Response</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/onboarding">Publisher Integration</a>
+		<ul>
+			<li class=""><a href="/onboarding/web">Web</a></li>
+			<li class=""><a href="/onboarding/mobile-sdk">Mobile SDK</a></li>
+		</ul>
+	</li>
+</ul>
+		</div>
+		<div id="content" class="pure-u">
+			<div class="pure-g">
+				<div class="pure-u-5-5">
+    <h1>Report Metrics</h1>
+
+    <table class="pure-table metrics">
+        <thead>
+            <tr>
+                <th>Metrics</th>
+                <th>Description</th>
+                <th>Direct</th>
+                <th>Managed</th>
+                <th>Preferred</th>
+                <th>Marketplace</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>impressions</code></td>                        
+                <td>Impressions count (billable)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>cpm_impressions</code></td>                    
+                <td>Regular impressions count</td>
+                <td>YES</td>
+                <td></td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>vcpm_impressions</code></td>                   
+                <td>Viewable impressions</td>
+                <td>YES</td>
+                <td></td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>supplementary_impressions</code></td>          
+                <td>Impressions derived from Nativo's content widget or Articles By Author feature</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>clicks</code></td>                             
+                <td>Click count</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>supplementary_clicks</code></td>               
+                <td>Clicks from the supplementary impression</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>ctr</code></td>                                
+                <td>Click rate (ratio between clicks and impressions)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>cta</code></td>                                
+                <td>Call to action (clicks from the article page)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>companion_asset_clicks</code></td>             
+                <td>Number of times users clicked companion assets</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>slide_views</code></td>                        
+                <td>Number of slideshow views</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>cta_rate</code></td>                           
+                <td>CTA rate (ratio between CTA and clicks)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>avg_time_on_content</code></td>                
+                <td>Average time spent on article (sec)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>total_time_on_content</code></td>              
+                <td>Total time spent on article</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>engagements</code></td>                        
+                <td>Number of users that spent greater than 5 seconds on the article</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>engagement_rate</code></td>                    
+                <td>Percentage of users that spent greater than 5 seconds on the article</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>shares</code></td>                             
+                <td>Number of times users have clicked to share an article</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>earned_views</code></td>                       
+                <td>Number of times users clicked a shared link and landed on an article</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>page_views</code></td>                         
+                <td>Page views</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>views_from_adunit</code></td>                  
+                <td>Page views that originated from a native adunit</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>video_views</code></td>                        
+                <td>Video views count</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>video_view_to_25</code></td>                   
+                <td>Number of video views where people watched at least 25 percent of the video</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>video_view_to_50</code></td>                   
+                <td>Number of video views where people watched at least 50 percent of the video</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>video_view_to_75</code></td>                   
+                <td>Number of video views where people watched at least 75 percent of the video</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>video_end</code></td>                          
+                <td>Number of video views where people reached the end of the video</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>video_complete_rate</code></td>                
+                <td>Video completion rate</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>views_to_15_seconds</code></td>                
+                <td>Videos views to 15 seconds</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>views_to_30_seconds</code></td>                
+                <td>Video views to 30 seconds</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>pre_roll_video_start</code></td>               
+                <td>Number of pre-roll video starts</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>pre_roll_video_end</code></td>                 
+                <td>Number of pre-roll video end</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>flight_start_date</code></td>                  
+                <td>Start date specified in budget (**requires** campaign/budget/ad breakdown)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>flight_end_date</code></td>                    
+                <td>End date specified in budget (**requires** campaign/budget/ad breakdown)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>actual_start_date</code></td>
+                <td>Start date based on actual impressions delivery (**requires** campaign/budget/ad breakdown)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>actual_end_date</code></td>
+                <td>End date based on actual impressions delivery (**requires** campaign/budget/ad breakdown)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>gross_budget_spent</code></td>                 
+                <td>Total budget spent, including media and all fees</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>gross_budget_fill</code></td>                  
+                <td>Percentage of gross budget spent (**requires** campaign/budget/ad breakdown)</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>media_budget_spent</code></td>                 
+                <td>Media budget spent only, excluding fees</td>
+                <td>YES</td>
+                <td></td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>cpm</code></td>                                
+                <td>Budget CPM</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>platform_fee</code></td>                       
+                <td>Fee paid for use of the Nativo platform (set by Nativo)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>agency_fee</code></td>                         
+                <td>Fee paid to the advertising agency (set by the agency)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>data_fee</code></td>                           
+                <td>Fee paid for use of DMP data (only applied when audience targeting is used)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>data_analytics_fee</code></td>                 
+                <td>Fee paid to analytics provider (such as MOAT, SimpleReach etc.)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>third_party_fee</code></td>
+                <td>Any other third-party fee, such as verification platform (IAS, DoubleVerify) or third-party ad server.</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>moat_scroll_init_rate</code></td>              
+                <td>Moat Scroll Initiation Rate (Moat Enabled)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>moat_scroll_depth</code></td>                  
+                <td>Moat Scroll Depth % (Moat Enabled)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>moat_scroll_down_velocity</code></td>          
+                <td>Moat Scroll Down Velocity (Moat Enabled)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>moat_bottom_article_rate</code></td>           
+                <td>Moat Reached Bottom Article % (Moat Enabled)</td>
+                <td>YES</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>publisher_cpm</code></td>
+                <td>Regular impressions count for publisher</td>
+                <td></td>
+                <td></td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td><code>publisher_revenue</code></td>
+                <td>Revenue for publisher</td>
+                <td></td>
+                <td></td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/main.js"></script>
+</body>
+</html>

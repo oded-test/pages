@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+	<h1>Ad Server API</h1>
+	<p>
+	  Nativo exposes endpoints that can be used for retrieving a list of articles or individual article based on a custom ﬁlter criteria that’s passed through Nativo’s ad call within the querystring.
+	</p>
+
+	<h2>Formats</h2>
+    <p>
+        The API allows retrieving data in sevral different formats, by using different extension when accessing the relevant endpoint:
+        <ul>
+			<li>Json: Using .json extension, will return the content in a Json format.</li>
+			<li>JavaScript: Using the .js extension, will return the content in a javascript format that can be executed on a page.</li>
+			<li>RSS: Using .rss extension, will return the content in an RSS format.</li>
+		</ul>
+
+		<p>
+            Note: To initiate the API-based ad call using the Javscript format, include the below code within the <code>&lt;head&gt;</code> section of the page. The JavaScript response will include a call to a callback function you can register to in order to retrieve the relevant data
+        </p>
+
+        <pre class="highlight">
+	        <code class="html">&lt;head&gt;
+	&lt;script type="text/javascript"&gt;
+		// implement the callback function to retrieve the article(s)
+	    function getContent() { 
+	        if (data.articles.length &gt; 0) {
+	            // add your custom code here
+	        }
+	    }
+	    // hook to the callback function to retrieve the article(s)
+	    var Nativo = window.top.Nativo = window.top.Nativo || {}
+	    Nativo.onArticlesReady = getContent;
+	&lt;/script&gt;
+	&lt;script src="http://jadserve.postrelease.com/..."&gt;&lt;/script&gt;
+&lt;/head&gt;</code>
+		</pre>
+    </p>
+</div>

@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+	<header>
+		<h1>Mobile SDK Integration</h1>
+		<p>
+			Nativo's Mobile SDK allows you to display True Native ad units, track engagement, and customize thelook and feel of Nativo-served ads to match your application's appearance in just a few lines of code. It's everyting you need to build full-featured apps.
+		</p>	
+	</header>
+
+	<h2>iOS</h2>
+	<p>
+		Integrating the Nativo SDK into your iOS app is a relatively simple process, depending on your code complexity. The SDK consists of 3 main classes, and 1 class category. You will use these classes to request ads for your app and then track them. Tracking provides valuable insights into how and when a user views an ad and engagement metrics like how long a user spends viewing an ad editorial.	
+	</p>
+
+	<h3>Getting Started</h3>
+	<p>
+		Follow the steps below to Integrate the Nativo SDK Framework into your XCode project
+	</p>
+
+	<ol>
+		<li>Download the <a href="https://nativo1.app.box.com/iOS-SDK-and-sample-app">Nativo SDK Framework</a>.</li>
+		<li>Uncompress the .zip file to a folder of your choice.</li>
+		<li>
+			Open your Xcode project and click on the root of your project to see the project settings screen. Click the TARGET used to build your project, and then on the tab <strong>Build Settings</strong>. Use the search box to find for the <strong>Other Linker Flags</strong> entry and update its value to -Objc. The image below illustrates this action.
+		</li>
+	</ol>
+
+	<p><img src="/img/scr_objc_2.png" alt=""></p>
+
+	<ol>
+		<li>
+			Still at the TARGET section click the Build Phases tab and scroll down until you find the “Link Binary With Libraries” section. Expand this section by clicking on the little arrow at the upper left corner to see the list of libraries and framework currently linked to to your project. Click the + button to add a new library/framework and then click Add Other. Now select the NativoSDK.framework folder located at the directory you uncompressed the files in Step 2. Then click Open to add it to your project.
+		</li>
+		<li>Click again on the + button. Now you must add the AdSupport.framework.</li>
+	</ol>
+
+	<p><img src="/img/scr_frameworks_2.png" alt=""></p>
+	
+</div>

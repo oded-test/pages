@@ -1,0 +1,70 @@
+<h2>Parameters</h2>
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>Get data from this datetime and forward (inclusive of the hour). Format: "mm/dd/YYYY HH:MM" (minutes are ignored)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>Get data up to this datetime (inclusive of the hour). Format: "mm/dd/YYYY HH:MM" (minutes are ignored)</td>
+        </tr>
+        <tr>
+            <td><code>breakdown</code></td>
+            <td>
+                The entity to use to breakdown the data (for example by advertiser, campaign, etc.). It is possible to provide multiple breakdowns. Format (array of strings): ["advertiser | campaign | ...", ...].<br>
+                See <a href="/api/reporting/entities">report entities</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code>metrics</code></td>
+            <td>
+                Specify the metrics to return. Format (array of strings): ["impressions | reads | ...", ...],<br>
+                See <a href="/api/reporting/metrics">report metrics</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code>filters</code></td>
+            <td>
+                Allow to filter only specific entities such as by specific campaigns, publications, etc.
+                See <a href="/api/reporting/entities">report entities</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code>resolution</code></td>
+            <td>Time breakdown for the results being returned. We support hourly, daily and totals</td>
+        </tr>
+        <tr>
+            <td><code>sort_by</code></td>
+            <td>Specify the name of the breakdown or metric to sort by</td>
+        </tr>
+        <tr>
+            <td><code>sort_order</code></td>
+            <td>Specify 'asc' or 'desc' as sorting order</td>
+        </tr>
+        <tr>
+            <td><code>page_size</code></td>
+            <td>
+                Number of results to be returned<br>
+                Default: 500
+            </td>
+        </tr>
+        <tr>
+            <td><code>page</code></td>
+            <td>The page of results to be returned</td>
+        </tr>
+        <tr>
+            <td><code>timezone</code></td>
+            <td>
+                Retrieve data based on <a href="http://www.joda.org/joda-time/timezones.html">timezone </a><br>
+                Default: UTC
+            </td>
+        </tr>
+    </tbody>
+</table>

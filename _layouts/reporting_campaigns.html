@@ -1,0 +1,77 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+    <header>
+        <h1>Campaigns</h1>
+        <p>
+            The Nativo Campaigns Service returns a list of campaigns by id, name, and the id to the advertiser.
+        </p>
+    </header>
+
+    <pre class="endpoint">GET
+https://api.nativo.net/v2/campagins</pre>
+
+    <h2>Sample Request</h2>
+
+    <div class="language-picker">
+        {% include language_selector.html %}
+        <div class="code">
+            <pre class="curl"><code>curl -H "nativo-token: $nativo_token" \
+    -H "nativo-timestamp: $nativo_timestamp" \
+    -H "nativo-hash: $nativo_hash" \
+    -i https://api.nativo.net/v2/campaigns</code></pre>
+            <pre class="python"><code>import nativo
+
+nativo.api_key = 'API_KEY'
+nativo.api_secret = 'API_SECRET'
+
+campaigns = nativo.Campaign.list()</code></pre>
+        </div>
+    </div>
+
+    <h2>Response</h2>
+    <div class="language-picker">
+        {% include language_selector.html %}
+        <div class="code">
+            <pre class="curl"><code>{
+    "status": "success",
+    "status_code": 200,
+    "data": [
+        {
+            "advertiser_id": 1338
+            "id": 100345,
+            "name": "Winter Campaign"
+        },
+        {
+            "advertiser_id": 1338
+            "id": 100234,
+            "name": "Summer Campaign"
+        },
+        {
+            "advertiser_id": 1337
+            "id": 100123,
+            "name": "Summer Campaign"
+        }
+    ]
+}</code></pre>
+            <pre class="python"><code>[
+        {
+            "advertiser_id": 1338
+            "id": 100345,
+            "name": "Winter Campaign"
+        },
+        {
+            "advertiser_id": 1338
+            "id": 100234,
+            "name": "Summer Campaign"
+        },
+        {
+            "advertiser_id": 1337
+            "id": 100123,
+            "name": "Summer Campaign"
+        }
+]</code></pre>
+        </div>
+    </div>
+</div>

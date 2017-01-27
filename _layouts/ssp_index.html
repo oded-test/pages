@@ -1,0 +1,171 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+    <h1>SSP API</h1>
+    <h2 id="OpenRTB-WhatversiondoesNativosupport?">What version does Nativo support?</h2>
+    <p><strong>Protocol:&nbsp;</strong>Nativo supports OpenRTB 2.3, Native Ads API 1.0/1.1.</p>
+    <p><strong>Formats:&nbsp;</strong>Nativo only supports native ad formats and does not support display or non-native video formats.</p>
+    <h2 id="OpenRTB-Whattypeofauctiondoestheplatformperform?">What type of auction does the platform perform?</h2>
+    <p>Nativo's SSP performs a <em>first price</em> auction. &nbsp;<span style="color: rgb(255,102,0);">This will be changed to a 2nd price auction. &nbsp;?? Need to support toggle ??</span></p>
+    <h2 id="OpenRTB-Whatnativeadformatsdowesupport?">What native ad formats do we support?</h2>
+    <p>Currently, through OpenRTB, the SSP only supports the in-feed&nbsp;display unit (in-feed ad unit that links to an advertiser page).</p>
+    <p>In the near future we will add the following ad formats:</p>
+    <ul>
+        <li>Native article ("True Native")</li>
+        <li>Native Video</li>
+    </ul>
+    <h2 id="OpenRTB-Whatratetypesdowesupport?">What rate types do we support?</h2>
+    <p>Nativo supports only CPM-based bidding (standard impressions). An impression is counted (and reported to the bidder) only when the ad is rendered on the page (but not necessarily in view to the user).</p>
+    <p>To allow bidders to optimize their buy, Nativo also supports reporting back to bidders (and third-party tags) on various events:</p>
+    <ul>
+        <li>Viewability (based on the MRC standard definition)</li>
+        <li>Clicks</li>
+    </ul>
+    <h2 id="OpenRTB-CanNativopre-filterthetrafficbeingroutedtothebidders?">Can Nativo pre-filter the traffic being routed to the bidders?</h2>
+    <p>Nativo provides country level filtering (include / exclude traffic from users of specific countries from being sent to the bidder).&nbsp;</p>
+    <h2 id="OpenRTB-Howmuchtimeisrequiredforthebidtobereturned?">How much time is required for the bid to be returned ?</h2>
+    <p>A bid is considered valid if it is being returned within <strong>75ms</strong> from when the bid request is issued by the SSP. This time includes the network time between the SSP and the relevant bidder.</p>
+    <p>It is highly recommended to:</p>
+    <ul>
+        <li>Locate the bidder as close as possible to one or more of the SSP data centers</li>
+        <li>Respect the HTTP "keep-alive" header to allow the SSP to reuse existing HTTP connection with the bidders</li>
+    </ul>
+    <p>Nativo's platform continually monitors bidder performance. Bidders with high timeout / error rates will see their request frequency throttled down temporarily. Once the system detects that the bidder is "healthy" again, the platform will slowly increase the requests rate. This is done in order to reduce the consumption of valuable resources of our system, and help maintain the stability of the bidders.</p>
+    <h2 id="OpenRTB-InwhatgeographicalregionsistheSSPdeployed?">In what geographical regions is the SSP deployed?</h2>
+    <p>Nativo's SSP is a fully distributed system that is deployed in various geographical regions (hosted in AWS).&nbsp;</p>
+    <div class="table-wrap">
+        <table class="pure-table">
+            <thead class="tableFloatingHeaderOriginal">
+                <tr>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Region</div>
+                    </th>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Geo Location</div>
+                    </th>
+                    <th colspan="1" class="confluenceTh">
+                        <div class="tablesorter-header-inner">AWS Region</div>
+                    </th>
+                </tr>
+            </thead>
+            <thead class="tableFloatingHeader" style="display: none;">
+                <tr>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Region</div>
+                    </th>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Geo Location</div>
+                    </th>
+                    <th colspan="1" class="confluenceTh">
+                        <div class="tablesorter-header-inner">AWS Region</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="confluenceTd">US East Coast</td>
+                    <td class="confluenceTd">Northern Virginia</td>
+                    <td colspan="1" class="confluenceTd">us-east-1</td>
+                </tr>
+                <tr>
+                    <td class="confluenceTd">US West Coast</td>
+                    <td class="confluenceTd">Northern California</td>
+                    <td colspan="1" class="confluenceTd">us-west-1</td>
+                </tr>
+                <tr>
+                    <td class="confluenceTd">Western Europe</td>
+                    <td class="confluenceTd">Ireland</td>
+                    <td colspan="1" class="confluenceTd"><span style="color: rgb(68,68,68);">eu-west-1</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>A bidder can be connected to 1 or more regions of the SSP.</p>
+    <h2 id="OpenRTB-Whatdatawillthebidderhaveaccesstoonthebidrequest?">What data will the bidder have access to on the bid request?</h2>
+    <p>A detailed spec of the request structure can be found <a href="/wiki/display/PD/Bid+Request">here</a>.</p>
+    <h2 id="OpenRTB-DoesNativosupportscookiesynching?">Does Nativo supports cookie synching?</h2>
+    <p>Nativo allows the bidder to specify what user ID to receive on the request. Two options are made available:</p>
+    <ul>
+        <li>Currently supported: Nativo's user ID</li>
+        <li>Next version: The bidder user ID (assuming it was synced in advance with Nativo)</li>
+    </ul>
+    <p>Nativo allows bidders to sync user cookies with Nativo's platform in the following two ways.</p>
+    <div class="table-wrap">
+        <table class="pure-table">
+            <thead class="tableFloatingHeaderOriginal">
+                <tr>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Mode</div>
+                    </th>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Endpoint</div>
+                    </th>
+                    <th colspan="1" class="confluenceTh">Parameters</th>
+                    <th colspan="1" class="confluenceTh">
+                        <div class="tablesorter-header-inner">Example</div>
+                    </th>
+                </tr>
+            </thead>
+            <thead class="tableFloatingHeader" style="display: none;">
+                <tr>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Mode</div>
+                    </th>
+                    <th class="confluenceTh">
+                        <div class="tablesorter-header-inner">Endpoint</div>
+                    </th>
+                    <th colspan="1" class="confluenceTh">Parameters</th>
+                    <th colspan="1" class="confluenceTh">
+                        <div class="tablesorter-header-inner">Example</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="confluenceTd">Get Nativo's user ID</td>
+                    <td class="confluenceTd">/get-uid/</td>
+                    <td colspan="1" class="confluenceTd"><span>NTV_USER_ID: will be replaced at runtime with the Nativo user id (when redirecting to the URL provided on the ntv_r parameter)</span></td>
+                    <td colspan="1" class="confluenceTd">
+                        <p class="p1">http://jadserve.postrelease.com/get-uid/?ntv_r=http://bidder.com/?param=NTV_USER_ID</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="confluenceTd">Update bidder user ID in the Nativo platform</td>
+                    <td class="confluenceTd">/set-uid/</td>
+                    <td colspan="1" class="confluenceTd">
+                        <p>[<span>bidder_id]: ID to identify the bidder. Will be provided by Nativo</span></p>
+                        <p><span>[<span>bidder_userid]: should be replaced at runtime by the bidder with its user ID</span>
+                            <br class="_mce_tagged_br">
+                            </span>
+                        </p>
+                    </td>
+                    <td colspan="1" class="confluenceTd">http://jadserve.postrelease.com/suid/[bidder_id]?vk=[bidder_userid]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2 id="OpenRTB-Whataretherequiredfieldsinthebidresponse?">What are the required fields in the bid response?</h2>
+    <p>A detailed spec of the response structure can be found&nbsp;<a href="/wiki/display/PD/Bid+Response">here</a>.</p>
+    <h2 id="OpenRTB-Aretherespecialrequirements/restrictionsaroundassets?">Are there special requirements / restrictions around assets?</h2>
+    <p>As described in the <a href="/wiki/display/PD/Bid+Request">request spec</a>, Nativo will provide on each request the exact dimensions (width x height) required for an image to be valid. This is very important as it allows us to ensure that the user experience and the speed of delivering the ad is optimal. Bidders must return the images in the exact dimension specified in the request.</p>
+    <h2 id="OpenRTB-HowandwhendoIgetnotifiedonawin?">How and when do I get notified on a win?</h2>
+    <p>Since win notification doesn't result necessarily in an impression (which is the billable event), we do not support win notification through the nurl field in the bid response. Instead we recommend using the impressions tracking field as a way to get notified on a win (that resulted in an ad rendered on a page). The impression notification, as mentioned above, is triggered from the client browser as a GET request. All standard winning notification macros are supported for this impression tracking url</p>
+    <p>For more details on the macros supported see "Win notification Macros" under the&nbsp;<a href="/wiki/display/PD/Bid+Response">bid response object</a>.</p>
+    <h2 id="OpenRTB-Whatwillyouneedtoprovide?">What will you need to provide?</h2>
+    <p>In order to integrate with the Nativo SSP using OpenRTB you will need to provide the following:</p>
+    <ul>
+        <li>Native Ads API version (1.0 or 1.1)</li>
+        <li>1 or more endpoints to your bidder, specifying to what regions of the SSP those should be connected</li>
+        <li>Rate limit (requests per second) per end-point</li>
+        <li>User ID mode: Receive Natvio's user ID or the specific bidder user ID</li>
+        <li>Optional: Country level filtering</li>
+        <li>Optional: Cookie synch tag</li>
+    </ul>
+    <p>
+        <br>
+    </p>
+    <p>
+        <br>
+    </p>
+</div>

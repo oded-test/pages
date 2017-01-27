@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"></link>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/atom-one-dark.min.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css"></link>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+</head>
+<body>
+	<div id="container" class="pure-g">
+		<div id="nav" class="pure-u">
+			<a class="logo" href="/"><img src="http://www.nativo.net/v2/img/global/nativo_logo.png" alt="Nativo logo" style="width: 140px"></a>
+
+<ul class="main">
+	<li class="">
+		<a href="/">Overview</a>
+	</li>
+	<li class="active">
+		<a href="/api/reporting/libraries">Reporting API</a>
+		<ul>
+			<li class=""><a href="/api/reporting/libraries">API Libraries</a></li>
+			<li class=""><a href="/api/reporting/authentication">Authentication</a></li>
+			<li class=""><a href="/api/reporting/advertisers">Advertisers</a></li>
+			<li class=""><a href="/api/reporting/campaigns">Campaigns</a></li>
+			<li class=""><a href="/api/reporting/direct">Direct Report</a></li>
+			<li class=""><a href="/api/reporting/managed">Managed Report</a></li>
+			<li class="active"><a href="/api/reporting/preferred">Preferred Report</a></li>
+			<li class=""><a href="/api/reporting/marketplace">Marketplace Report</a></li>
+			<li class=""><a href="/api/reporting/metrics">Report Metrics</a></li>
+			<li class=""><a href="/api/reporting/entities">Report Entities</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/api/ad-server">Ad Server API</a>
+		<ul>
+			<li class=""><a href="/api/ad-server/content-service">Content Service</a></li>
+			<li class=""><a href="/api/ad-server/index-service">Index Service</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/api/ssp-api">SSP API</a>
+		<ul>
+			<li class=""><a href="/api/ssp-api/overview">Overview</a></li>
+			<li class=""><a href="/api/ssp-api/bid-request">Bid Request</a></li>
+			<li class=""><a href="/api/ssp-api/bid-response">Bid Response</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/onboarding">Publisher Integration</a>
+		<ul>
+			<li class=""><a href="/onboarding/web">Web</a></li>
+			<li class=""><a href="/onboarding/mobile-sdk">Mobile SDK</a></li>
+		</ul>
+	</li>
+</ul>
+		</div>
+		<div id="content" class="pure-u">
+			<div class="pure-g">
+				<div class="pure-u-5-5">
+    <header>
+        <h1>Preferred Report</h1>    
+        <p>
+            The Preferred Report makes it easy to integrate campaign and ad metrics into applications and reporting systems. Include a variety of deep analytics directly into your system by using Nativo's endpoint as the primary basis for your reporting layer. 
+        </p>
+    </header>
+    
+    <pre class="endpoint">POST
+https://api.nativo.net/v2/data/preferred</pre>
+
+    <h2>Parameters</h2>
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>start_date</code></td>
+            <td>Get data from this datetime and forward (inclusive of the hour). Format: "mm/dd/YYYY HH:MM" (minutes are ignored)</td>
+        </tr>
+        <tr>
+            <td><code>end_date</code></td>
+            <td>Get data up to this datetime (inclusive of the hour). Format: "mm/dd/YYYY HH:MM" (minutes are ignored)</td>
+        </tr>
+        <tr>
+            <td><code>breakdown</code></td>
+            <td>
+                The entity to use to breakdown the data (for example by advertiser, campaign, etc.). It is possible to provide multiple breakdowns. Format (array of strings): ["advertiser | campaign | ...", ...].<br>
+                See <a href="/api/reporting/entities">report entities</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code>metrics</code></td>
+            <td>
+                Specify the metrics to return. Format (array of strings): ["impressions | reads | ...", ...],<br>
+                See <a href="/api/reporting/metrics">report metrics</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code>filters</code></td>
+            <td>
+                Allow to filter only specific entities such as by specific campaigns, publications, etc.
+                See <a href="/api/reporting/entities">report entities</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code>resolution</code></td>
+            <td>Time breakdown for the results being returned. We support hourly, daily and totals</td>
+        </tr>
+        <tr>
+            <td><code>sort_by</code></td>
+            <td>Specify the name of the breakdown or metric to sort by</td>
+        </tr>
+        <tr>
+            <td><code>sort_order</code></td>
+            <td>Specify 'asc' or 'desc' as sorting order</td>
+        </tr>
+        <tr>
+            <td><code>page_size</code></td>
+            <td>
+                Number of results to be returned<br>
+                Default: 500
+            </td>
+        </tr>
+        <tr>
+            <td><code>page</code></td>
+            <td>The page of results to be returned</td>
+        </tr>
+        <tr>
+            <td><code>timezone</code></td>
+            <td>
+                Retrieve data based on <a href="http://www.joda.org/joda-time/timezones.html">timezone </a><br>
+                Default: UTC
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+    <h2>Sample Request</h2>
+    <p>
+        Get total impressions and clicks from January 7th 2015 at 03:00AM to January 10th at 23:00AM (inclusive) broken down by advertiser and campaign, filtered by a specific publication using a daily resolution.        
+    </p>
+    <p>
+        The order of fields in the posted payload does not matter. Each breakdown will return a json object which includes both a name and a numerical id keys.
+    </p>
+
+    <div class="language-picker">
+        <div class="languages">
+    <a data-language="python">Python</a>
+    <a data-language="curl">CURL</a>
+</div>
+        <div class="code">
+            <pre class="python"><code>import nativo
+from nativo import metrics, entities, resolutions
+
+nativo.api_key = 'API_KEY'
+nativo.api_secret = 'API_SECRET'
+
+payload = {
+    "start_date": "2015-04-22T03:00:00Z",
+    "end_date": "2015-04-25T23:00:00Z",
+    "breakdown": [entities.CAMPAIGN, entities.AD],
+    "metrics": [metric.CLICKS],
+    "filters": {entities.CAMPAIGN : [105706]},
+    "resolution": resolutions.DAILY,
+    "sort_by": metrics.IMPRESSIONS,
+    "sort_order": "desc",
+    "page_size": 500,
+    "page": 1,
+    "timezone": "America/New_York"
+}
+
+data = nativo.PreferredReport.retrieve(**payload)</code></pre>
+            <pre class="curl"><code># todo</code></pre> 
+        </div>
+    </div>
+
+    <h2>Response</h2>
+    <div class="language-picker">
+        <div class="languages">
+    <a data-language="python">Python</a>
+    <a data-language="curl">CURL</a>
+</div>
+        <div class="code">
+            <pre class="python">{
+    "data": [
+        {
+        "campaign":{"id":16802,"name":"My Campaign1"},
+            "day": "2014-04-01T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        },
+        {
+        "campaign":{"id":16713,"name":"My Campaign2"},
+            "day": "2014-04-02T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        }
+    ],
+    "total_count": 2,
+    "page_size": 500,
+    "page": 1
+}<code></code></pre>
+            <pre class="curl json"><code>{
+    "data": [
+        {
+        "campaign":{"id":16802,"name":"My Campaign1"},
+            "day": "2014-04-01T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        },
+        {
+        "campaign":{"id":16713,"name":"My Campaign2"},
+            "day": "2014-04-02T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        }
+    ],
+    "messages": [
+        {
+            "level": "info",
+            "text": "OK"
+        }
+    ],
+    "total_count": 2,
+    "page_size": 500,
+    "page": 1, 
+    "status": "success",
+    "status_code": 200
+}</code></pre>
+        </div>
+    </div>
+
+        <h2>Response Format</h2>
+
+    <table class="pure-table">
+    	<thead>
+    		<tr>
+    			<th>Key</th>
+    			<th>Description</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td><code>status</code><sup>*</sup></td>
+    			<td>
+    				success<br/>
+    				failed
+    			</td>
+    		</tr>
+    		<tr>
+    			<td><code>status_code</code><sup>*</sup></td>
+    			<td>HTTP status code (200, 400, 404, 403, etc)</td>
+			</tr>
+			<tr>
+				<td><code>messages</code><sup>*</sup></td>
+				<td>
+					Array of messages with text and level (info, error, warning)<br/>
+					<code>{"text":"Some message from the system", "level": "info"}</code>
+				</td>
+			</tr>
+			<tr>
+				<td><code>total_count</code></td>
+				<td>Total results</td>
+			</tr>
+			<tr>
+				<td><code>page_size</code></td>
+				<td>Results per page</td>
+			</tr>
+			<tr>
+				<td><code>page</code></td>
+				<td>Page number</td>
+			</tr>
+			<tr>
+				<td><code>data</code></td>
+				<td>Main response payload</td>
+			</tr>
+    	</tbody>
+    </table>
+    <p>
+    	<sup>*</sup>Key not available when using the Nativo API library.
+    </p>
+</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/main.js"></script>
+</body>
+</html>

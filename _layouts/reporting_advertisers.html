@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+    <header>
+        <h1>Advertisers</h1> 
+
+        <p>
+            The Advertiser Service returns a list of advertisers by id and name.
+        </p>
+    </header>
+
+    <pre class="endpoint">GET
+https://api.nativo.net/v2/advertisers</pre>
+
+    <h2>Sample Request</h2>
+
+    <div class="language-picker">
+        {% include language_selector.html %}
+        <div class="code">
+            <pre class="curl"><code>curl -H "nativo-token: $nativo_token" \
+    -H "nativo-timestamp: $nativo_timestamp" \
+    -H "nativo-hash: $nativo_hash" \
+    -i https://api.nativo.net/v2/advertisers</code></pre>
+            <pre class="python"><code>import nativo
+
+nativo.api_key = 'API_KEY'
+nativo.api_secret = 'API_SECRET'
+
+advertisers = nativo.Advertiser.list()</code></pre>
+        </div>
+    </div>
+
+    <h2>Response</h2>
+    <div class="language-picker">
+        {% include language_selector.html %}
+        <div class="code">
+            <pre class="curl"><code>{
+    "status": "success",
+    "status_code": 200,
+    "data": [
+        {
+            "id": 1338,
+            "name": "Company A"
+        },
+        {
+            "id": 1337,
+            "name": "Company B"
+        }
+    ]
+}</code></pre>
+            <pre class="python"><code>[
+        {
+            "id": 1338,
+            "name": "Company A"
+        },
+        {
+            "id": 1337,
+            "name": "Company B"
+        }
+]</code></pre>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include head.html %}
+</head>
+<body>
+	<div id="container" class="pure-g">
+		<div id="nav" class="pure-u">
+			{% include nav.html %}
+		</div>
+		<div id="content" class="pure-u">
+			<div class="pure-g">
+				{{ content }}
+			</div>
+		</div>
+	</div>
+	<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "developers.nativo.net",
+  "version": "0.1",
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-jekyll": "^0.4.4"
+  }
+}

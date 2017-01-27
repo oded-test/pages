@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"></link>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/atom-one-dark.min.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css"></link>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+</head>
+<body>
+	<div id="container" class="pure-g">
+		<div id="nav" class="pure-u">
+			<a class="logo" href="/"><img src="http://www.nativo.net/v2/img/global/nativo_logo.png" alt="Nativo logo" style="width: 140px"></a>
+
+<ul class="main">
+	<li class="">
+		<a href="/">Overview</a>
+	</li>
+	<li class="">
+		<a href="/api/reporting/libraries">Reporting API</a>
+		<ul>
+			<li class=""><a href="/api/reporting/libraries">API Libraries</a></li>
+			<li class=""><a href="/api/reporting/authentication">Authentication</a></li>
+			<li class=""><a href="/api/reporting/advertisers">Advertisers</a></li>
+			<li class=""><a href="/api/reporting/campaigns">Campaigns</a></li>
+			<li class=""><a href="/api/reporting/direct">Direct Report</a></li>
+			<li class=""><a href="/api/reporting/managed">Managed Report</a></li>
+			<li class=""><a href="/api/reporting/preferred">Preferred Report</a></li>
+			<li class=""><a href="/api/reporting/marketplace">Marketplace Report</a></li>
+			<li class=""><a href="/api/reporting/metrics">Report Metrics</a></li>
+			<li class=""><a href="/api/reporting/entities">Report Entities</a></li>
+		</ul>
+	</li>
+	<li class="active">
+		<a href="/api/ad-server">Ad Server API</a>
+		<ul>
+			<li class=""><a href="/api/ad-server/content-service">Content Service</a></li>
+			<li class=""><a href="/api/ad-server/index-service">Index Service</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/api/ssp-api">SSP API</a>
+		<ul>
+			<li class=""><a href="/api/ssp-api/overview">Overview</a></li>
+			<li class=""><a href="/api/ssp-api/bid-request">Bid Request</a></li>
+			<li class=""><a href="/api/ssp-api/bid-response">Bid Response</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="/onboarding">Publisher Integration</a>
+		<ul>
+			<li class=""><a href="/onboarding/web">Web</a></li>
+			<li class=""><a href="/onboarding/mobile-sdk">Mobile SDK</a></li>
+		</ul>
+	</li>
+</ul>
+		</div>
+		<div id="content" class="pure-u">
+			<div class="pure-g">
+				<div class="pure-u-5-5">
+	<h1>Ad Server API</h1>
+	<p>
+	  Nativo exposes endpoints that can be used for retrieving a list of articles or individual article based on a custom ﬁlter criteria that’s passed through Nativo’s ad call within the querystring.
+	</p>
+
+	<h2>Formats</h2>
+    <p>
+        The API allows retrieving data in sevral different formats, by using different extension when accessing the relevant endpoint:
+        <ul>
+			<li>Json: Using .json extension, will return the content in a Json format.</li>
+			<li>JavaScript: Using the .js extension, will return the content in a javascript format that can be executed on a page.</li>
+			<li>RSS: Using .rss extension, will return the content in an RSS format.</li>
+		</ul>
+
+		<p>
+            Note: To initiate the API-based ad call using the Javscript format, include the below code within the <code>&lt;head&gt;</code> section of the page. The JavaScript response will include a call to a callback function you can register to in order to retrieve the relevant data
+        </p>
+
+        <pre class="highlight">
+	        <code class="html">&lt;head&gt;
+	&lt;script type="text/javascript"&gt;
+		// implement the callback function to retrieve the article(s)
+	    function getContent() { 
+	        if (data.articles.length &gt; 0) {
+	            // add your custom code here
+	        }
+	    }
+	    // hook to the callback function to retrieve the article(s)
+	    var Nativo = window.top.Nativo = window.top.Nativo || {}
+	    Nativo.onArticlesReady = getContent;
+	&lt;/script&gt;
+	&lt;script src="http://jadserve.postrelease.com/..."&gt;&lt;/script&gt;
+&lt;/head&gt;</code>
+		</pre>
+    </p>
+</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/main.js"></script>
+</body>
+</html>

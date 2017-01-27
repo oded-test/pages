@@ -1,0 +1,49 @@
+    <h2>Response Format</h2>
+
+    <table class="pure-table">
+    	<thead>
+    		<tr>
+    			<th>Key</th>
+    			<th>Description</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td><code>status</code><sup>*</sup></td>
+    			<td>
+    				success<br/>
+    				failed
+    			</td>
+    		</tr>
+    		<tr>
+    			<td><code>status_code</code><sup>*</sup></td>
+    			<td>HTTP status code (200, 400, 404, 403, etc)</td>
+			</tr>
+			<tr>
+				<td><code>messages</code><sup>*</sup></td>
+				<td>
+					Array of messages with text and level (info, error, warning)<br/>
+					<code>{"text":"Some message from the system", "level": "info"}</code>
+				</td>
+			</tr>
+			<tr>
+				<td><code>total_count</code></td>
+				<td>Total results</td>
+			</tr>
+			<tr>
+				<td><code>page_size</code></td>
+				<td>Results per page</td>
+			</tr>
+			<tr>
+				<td><code>page</code></td>
+				<td>Page number</td>
+			</tr>
+			<tr>
+				<td><code>data</code></td>
+				<td>Main response payload</td>
+			</tr>
+    	</tbody>
+    </table>
+    <p>
+    	<sup>*</sup>Key not available when using the Nativo API library.
+    </p>

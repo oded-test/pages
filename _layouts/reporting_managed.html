@@ -1,0 +1,108 @@
+---
+layout: default
+---
+<div class="pure-u-5-5">
+    <header>
+        <h1>Managed Report</h1>
+        <p>
+            The Managed Report makes it easy to integrate campaign and ad metrics into applications and reporting systems for advertisers. Include a variety of deep analytics directly into your system by using Nativo's endpoint as the primary basis for your reporting layer. 
+
+        </p>
+    </header>
+
+    <pre class="endpoint">POST
+https://api.nativo.net/v2/data/managed</pre>
+
+    {% include report_params.html %}
+
+    <h3>Sample Request</h3>
+    <p>
+        Get total impressions and clicks from January 7th 2015 at 03:00AM to January 10th at 23:00AM (inclusive) broken down by advertiser and campaign, filtered by a specific publication using a daily resolution.
+    </p>
+    <p>
+        The order of fields in the posted payload does not matter. Each breakdown will return a json object which includes both a name and a numerical id keys.
+    </p>
+
+    <div class="language-picker">
+        {% include language_selector.html %}
+        <div class="code">
+            <pre class="python"><code>import nativo
+from nativo import metrics, entities, resolutions
+
+nativo.api_key = 'API_KEY'
+nativo.api_secret = 'API_SECRET'
+
+payload = {
+    "start_date": "2015-04-22T03:00:00Z",
+    "end_date": "2015-04-25T23:00:00Z",
+    "breakdown": [entities.CAMPAIGN, entities.AD],
+    "metrics": [metric.CLICKS],
+    "filters": {entities.CAMPAIGN : [105706]},
+    "resolution": resolutions.DAILY,
+    "sort_by": metrics.IMPRESSIONS,
+    "sort_order": "desc",
+    "page_size": 500,
+    "page": 1,
+    "timezone": "America/New_York"
+}
+
+data = nativo.ManagedReport.retrieve(**payload)</code></pre>  
+            <pre class="curl"><code># todo</code></pre>
+        </div>
+    </div>
+
+    <h2>Response</h2>
+    <div class="language-picker">
+        {% include language_selector.html %}
+        <div class="code">
+            <pre class="python"><code>{
+    "data": [
+        {
+        "campaign":{"id":16802,"name":"My Campaign1"},
+            "day": "2014-04-01T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        },
+        {
+        "campaign":{"id":16713,"name":"My Campaign2"},
+            "day": "2014-04-02T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        }
+    ],
+    "total_count": 2,
+    "page_size": 500,
+    "page": 1
+}</code></pre>
+            <pre class="curl json"><code>{
+    "data": [
+        {
+        "campaign":{"id":16802,"name":"My Campaign1"},
+            "day": "2014-04-01T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        },
+        {
+        "campaign":{"id":16713,"name":"My Campaign2"},
+            "day": "2014-04-02T00:00:00",
+            "impressions": 11519277,
+            "clicks": 206717
+        }
+    ],
+    "messages": [
+        {
+            "level": "info",
+            "text": "OK"
+        }
+    ],
+    "total_count": 2,
+    "page_size": 500,
+    "page": 1, 
+    "status": "success",
+    "status_code": 200
+}</code></pre>
+        </div>
+    </div>
+
+    {% include report_response_format.html %}
+</div>
